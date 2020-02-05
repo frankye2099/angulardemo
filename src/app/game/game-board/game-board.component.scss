@@ -1,0 +1,10 @@
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.winner {
+  font-size: x-large;
+  color: red;
+}
