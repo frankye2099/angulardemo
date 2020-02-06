@@ -7,8 +7,8 @@ import {GameService} from '../game.service';
   styleUrls: ['./game-board.component.scss']
 })
 export class GameBoardComponent implements OnInit {
-  private next: string;
-  private winner: string;
+  next: string;
+  winner: string;
   square: string[];
   constructor(private game: GameService) { }
 

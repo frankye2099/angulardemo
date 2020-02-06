@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demoui
+  name: demoui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demoui
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: demoui
+    spec:
+      containers:
+      - image: frankye2099/angular-demo:0.0.1
+        name: angular-demo
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: demoui
+  name: demoui
+spec:
+  ports:
+  - name: 80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: demoui
+  type: LoadBalancer
+status:
+  loadBalancer: {}

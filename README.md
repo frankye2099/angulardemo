@@ -11,7 +11,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
-
+```
+ng build --configuration=production
+```
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
 ## Running unit tests
@@ -28,3 +30,36 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ### Add module
 ng g module heros --route=heros --module=app
+
+### ngnix settings
+ngnix need to forward all urls to index.html to let angular handle the routing. Otherwise, will trigger 404.
+* nginx.conf
+```
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+```
+
+### docker
+```
+npx lite-server --baseDir="dist/angulardemo"
+
+ng build --configuration=production
+docker build -t frankye2099/angular-demo:0.0.1 .
+docker run -p 80:80 frankye2099/angular-demo:0.0.1
+docker push frankye2099/angular-demo:0.0.1
+```
+### kubernetes deployment.yaml
+```$xslt
+kubectl create deployment demoui --image=frankye2099/angular-demo:0.0.1 --dry-run -o=yaml > deployment.yaml
+echo --- >> deployment.yaml
+kubectl create service loadbalancer demoui --tcp=80:80 --dry-run -o=yaml >> deployment.yaml
+```
+deploy
+```$xslt
+kubectl apply -f deployment.yaml
+
+http://localhost
+```
