@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GameBoardComponent } from './game-board.component';
+import {GameBoardComponent} from './game-board.component';
+import {SquareComponent} from '../square/square.component';
 
 describe('GameBoardComponent', () => {
   let component: GameBoardComponent;
@@ -8,9 +9,9 @@ describe('GameBoardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GameBoardComponent ]
+      declarations: [GameBoardComponent, SquareComponent],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -21,5 +22,10 @@ describe('GameBoardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render title', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.whoIsNext').textContent).toContain('who is next:');
   });
 });

@@ -1,10 +1,7 @@
 <div *ngIf="winner" class="winner">{{winner}} is the Winner!!!
   <button (click)="reset()">Play again?</button>
 </div>
-<div *ngIf="!winner">who is next: {{next}}</div>
-<!--<div class="winner">Winner is {{winner}}!!!</div>-->
-<!--<div >who is next: {{next}}</div>-->
-
+<div *ngIf="!winner" class="whoIsNext">who is next: {{next}}</div>
 
 <div class="board-row">
   <app-square id="0" [value]="square[0]"></app-square>
@@ -22,7 +19,4 @@
   <app-square id="8" [value]="square[8]"></app-square>
 </div>
 
-<!--<div *ngIf="winner" >-->
-<!--  <button (click)="reset()" )>Play again?</button>-->
-<!--</div>-->
 
