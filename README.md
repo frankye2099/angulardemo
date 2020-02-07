@@ -44,16 +44,23 @@ ngnix need to forward all urls to index.html to let angular handle the routing. 
 
 ### docker
 ```
-npx lite-server --baseDir="dist/angulardemo"
+ng xi18n --output-path=src/locale
+
+copy messages.xlf to message.zh-Hans.xlf; add <target>translation</target>
 
 ng build --configuration=production
-docker build -t frankye2099/angular-demo:0.0.1 .
-docker run -p 80:80 frankye2099/angular-demo:0.0.1
-docker push frankye2099/angular-demo:0.0.1
+ng build --configuration=production-zh-Hans
+
+npx lite-server --baseDir="dist"
+npx lite-server --baseDir="dist/zh-Hans"
+
+docker build -t frankye2099/angular-demo:0.0.2 .
+docker run -p 80:80 frankye2099/angular-demo:0.0.2
+docker push frankye2099/angular-demo:0.0.2
 ```
 ### kubernetes deployment.yaml
 ```$xslt
-kubectl create deployment demoui --image=frankye2099/angular-demo:0.0.1 --dry-run -o=yaml > deployment.yaml
+kubectl create deployment demoui --image=frankye2099/angular-demo:0.0.2 --dry-run -o=yaml > deployment.yaml
 echo --- >> deployment.yaml
 kubectl create service loadbalancer demoui --tcp=80:80 --dry-run -o=yaml >> deployment.yaml
 ```
