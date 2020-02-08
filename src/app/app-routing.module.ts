@@ -8,6 +8,8 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   { path: 'heros', loadChildren: () => import('./heros/heros.module').then(m => m.HerosModule) },
   { path: 'game', loadChildren: () => import('./game/game.module').then(m => m.GameModule) },
+  {path: 'home', component: HomeComponent, pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', component: HomeComponent}
 ];
 

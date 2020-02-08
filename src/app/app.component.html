@@ -1,13 +1,37 @@
-<p class="content"><span>angular demo app is running!</span></p>
-<nav>
-  <a routerLink=""> Home</a>
-  <a routerLink="about"> About</a>
-  <a routerLink="heros"> Heros</a>
-  <a routerLink="game"> Game</a>
-</nav>
+<div class="container">
+  <ul ngbNav #nav="ngbNav" class="nav-tabs">
+    <li ngbNavItem>
+      <a ngbNavLink routerLink="home" routerLinkActive="active">Home</a>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink routerLink="about" routerLinkActive="active">About</a>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink routerLink="heros" routerLinkActive="active">Heros</a>
+    </li>
+    <li ngbNavItem>
+      <a ngbNavLink routerLink="game" routerLinkActive="active">Game</a>
+    </li>
+  </ul>
+  <div [ngbNavOutlet]="nav"></div>
+
+  <div *ngFor="let alert of alerts">
+    <ngb-alert [type]="alert.type" (close)="close(alert)">{{ alert.message }}</ngb-alert>
+  </div>
+
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+
+  <div class="fixed-bottom text-center">
+    <small>apiUrl : {{api}}</small>
+  </div>
+</div>
 
 
-<router-outlet></router-outlet>
 
 
-<small>apiUrl : {{api}}</small>
+
+
+
+

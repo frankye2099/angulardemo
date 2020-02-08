@@ -5,6 +5,17 @@ import {Observable, BehaviorSubject} from 'rxjs';
   providedIn: 'root'
 })
 export class GameService {
+  private winLines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+
   squares: string[];
   private xIsNext: boolean;
   private winnerSubject = new BehaviorSubject(null);
@@ -42,18 +53,8 @@ export class GameService {
   }
 
   calculateWinner(squares) {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
+    for (const line of this.winLines) {
+      const [a, b, c] = line;
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         this.winnerSubject.next(squares[a]);
         return squares[a];

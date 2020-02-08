@@ -1,22 +1,26 @@
-<div *ngIf="winner" class="winner">{{winner}} is the Winner!!!
-  <button (click)="reset()">Play again?</button>
-</div>
-<div *ngIf="!winner" class="whoIsNext">who is next: {{next}}</div>
+<div class="container">
+  <div *ngIf="winner">
+    <span class="winner">{{winner}} is the Winner!!!</span>
+    <button type="button" class="btn btn-primary" (click)="reset()">Play again?</button>
+  </div>
+  <div *ngIf="!winner" class="whoIsNext">who is next: {{next}}</div>
 
-<div class="board-row">
-  <app-square id="0" [value]="square[0]"></app-square>
-  <app-square id="1" [value]="square[1]"></app-square>
-  <app-square id="2" [value]="square[2]"></app-square>
+  <div class="board-row">
+    <app-square id="0" [value]="square[0]"></app-square>
+    <app-square id="1" [value]="square[1]"></app-square>
+    <app-square id="2" [value]="square[2]"></app-square>
+  </div>
+  <div class="board-row">
+    <app-square id="3" [value]="square[3]"></app-square>
+    <app-square id="4" [value]="square[4]"></app-square>
+    <app-square id="5" [value]="square[5]"></app-square>
+  </div>
+  <div class="board-row">
+    <app-square id="6" [value]="square[6]"></app-square>
+    <app-square id="7" [value]="square[7]"></app-square>
+    <app-square id="8" [value]="square[8]"></app-square>
+  </div>
 </div>
-<div class="board-row">
-  <app-square id="3" [value]="square[3]"></app-square>
-  <app-square id="4" [value]="square[4]"></app-square>
-  <app-square id="5" [value]="square[5]"></app-square>
-</div>
-<div class="board-row">
-  <app-square id="6" [value]="square[6]"></app-square>
-  <app-square id="7" [value]="square[7]"></app-square>
-  <app-square id="8" [value]="square[8]"></app-square>
-</div>
+
 
 
